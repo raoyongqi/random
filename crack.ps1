@@ -10,7 +10,7 @@ for ($randomPart1 = 0; $randomPart1 -le 9; $randomPart1++) {
         # 输出测试信息
 
         # 使用 adb 清除锁定设置
-        $output = & "C:\Users\r\Downloads\platform-tools\tools\adb.exe" shell locksettings clear --old $password 2>&1
+        $output = & "C:\Users\r\Downloads\platform-tools\adb.exe" shell locksettings clear --old $password 2>&1
 
         
         # 检查输出以确定是否成功
