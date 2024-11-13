@@ -1,5 +1,5 @@
 # Set the path to the adb tool
-$adbPath ="C:\Users\r\Downloads\platform-tools\adb.exe"
+$adbPath = "C:\Users\r\Downloads\platform-tools\adb.exe"
 
 # Check if adb is available
 if (-Not (Test-Path $adbPath)) {
@@ -19,42 +19,22 @@ if ($deviceList -match "device$") {
 
 # Get all installed packages
 Write-Host "Listing all installed packages..."
-$allPackages = & $adbPath shell pm list packages
+$allPackages = & $adbPath shell pm list packages  # Only user-installed apps (excluding system apps)
 
 if ($allPackages) {
-    Write-Host "Found the following installed packages:"
+    Write-Host "Found the following user-installed packages:"
     $allPackages | ForEach-Object {
         # Extract package name
         $packageName = $_ -replace "package:", ""
-        Write-Host $packageName
+        
+        Write-Host "Uninstalling user app: $packageName ..."
+        
+        # Uninstall the user app
+        & $adbPath shell pm uninstall --user 0 $packageName
     }
-
-    # Ask if the user wants to uninstall all user-installed apps
-    $uninstallAll = Read-Host "Do you want to uninstall all user-installed apps? (Y/N)"
-    if ($uninstallAll -eq "Y") {
-        Write-Host "Uninstalling user-installed apps..."
-        $allPackages | ForEach-Object {
-            # Extract package name
-            $packageName = $_ -replace "package:", ""
-            
-            # If it is a user app, uninstall it
-            $isUserApp = & $adbPath shell pm list packages -3 | Select-String $packageName
-            if ($isUserApp) {
-                Write-Host "Uninstalling user app: $packageName ..."
-                & $adbPath shell pm uninstall $packageName
-            }
-            # If it is a system app, disable it
-            else {
-                Write-Host "Disabling system app: $packageName ..."
-                & $adbPath shell pm disable-user --user 0 $packageName
-            }
-        }
-        Write-Host "All applications have been processed!"
-    } else {
-        Write-Host "Uninstall operation cancelled."
-    }
+    Write-Host "All user-installed apps have been processed!"
 } else {
-    Write-Host "No installed apps found."
+    Write-Host "No user-installed apps found."
 }
 
 # End of script
