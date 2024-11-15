@@ -4,6 +4,10 @@ $adbPath = "C:\Users\r\Downloads\platform-tools\adb.exe"
 
 # 要卸载的应用包名列表
 $packages = @(
+  com.huawei.hwid
+  "com.huawei.android.hwouc",
+  "com.huawei.hwdockbar",
+  "com.huawei.android.tips",
     "com.huawei.hiskytone",
     "com.huawei.filemanager",
     "com.hicloud.android.clone",
