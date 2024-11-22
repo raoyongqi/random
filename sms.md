@@ -12,4 +12,5 @@ PS C:\Users\r\Downloads\platform-tools> ./adb shell pm suspend --user 10 com.hua
 Package com.huawei.appmarket new suspended state: true
 PS C:\Users\r\Downloads\platform-tools> ./adb shell pm suspend --user 10 com.huawei.intelligent
 Package com.huawei.intelligent new suspended state: true
+
  adb shell appops set com.tencent.mm CAMERA deny
