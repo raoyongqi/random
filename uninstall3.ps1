@@ -2,7 +2,7 @@
 $adbPath = "C:\Users\r\Downloads\platform-tools\adb.exe"
 
 # 遍历 user 0 到 user 20
-for ($user_id = 0; $user_id -le 11; $user_id++) {
+for ($user_id = 10; $user_id -le 11; $user_id++) {
     # 执行卸载命令
     & $adbPath shell pm uninstall --user $user_id com.huawei.scanner
     & $adbPath shell pm disable-user  --user $user_id com.huawei.scanner

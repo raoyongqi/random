@@ -14,3 +14,4 @@ PS C:\Users\r\Downloads\platform-tools> ./adb shell pm suspend --user 10 com.hua
 Package com.huawei.intelligent new suspended state: true
 
  adb shell appops set com.tencent.mm CAMERA deny
+adb tcpip 5555

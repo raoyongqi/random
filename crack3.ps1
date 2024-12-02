@@ -14,8 +14,8 @@ if (-not (Test-Path $logFilePath)) {
 }
 
 # Loop to generate the last two digits in reverse (from 99 to 00)
-for ($randomPart1 = 9; $randomPart1 -ge 0; $randomPart1--) {
-    for ($randomPart2 = 9; $randomPart2 -ge 0; $randomPart2--) {
+for ($randomPart1 = 7; $randomPart1 -ge 0; $randomPart1--) {
+    for ($randomPart2 = 7; $randomPart2 -ge 0; $randomPart2--) {
         # Generate the complete password
         $password = "$fixedPart$randomPart1$randomPart2"
         
