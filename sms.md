@@ -4,7 +4,7 @@ exit
 ./adb pull /data/local/tmp/sms_output.txt
 
 
- ./adb logcat | Select-String -Pattern HwLKSS
+ ./adb logcat | Select-String-Pattern HwLKSS
 
  PS C:\Users\r\Downloads\platform-tools> ./adb shell pm suspend --user 10 com.huawei.market
 java.lang.IllegalArgumentException: Unknown target package: com.huawei.market
@@ -14,4 +14,4 @@ PS C:\Users\r\Downloads\platform-tools> ./adb shell pm suspend --user 10 com.hua
 Package com.huawei.intelligent new suspended state: true
 
  adb shell appops set com.tencent.mm CAMERA deny
-adb tcpip 5555
+adb tcpip 5555 

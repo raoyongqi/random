@@ -25,12 +25,30 @@ for ($user_id = 10; $user_id -le 11; $user_id++) {
     & $adbPath shell pm disable-user  --user $user_id com.huawei.intelligent
     & $adbPath shell pm uninstall --user $user_id com.huawei.android.totemweather
     & $adbPath shell pm disable-user --user $user_id com.huawei.search
-
+    & $adbPath shell pm disable-user --user $user_id com.huawei.android.hwouc.service
+    & $adbPath shell pm disable-user  --user $user_id com.android.settings.HWSettings
+    & $adbPath shell pm disable-user  --user $user_id com.huawei.ohos.famanager
+    & $adbPath shell pm disable-user  --user $user_id com.android.settings
+        & $adbPath shell pm suspend  --user $user_id com.android.settings.HWSettings
+        & $adbPath shell pm disable-user  --user $user_id  com.huawei.hifolder
+        & $adbPath shell pm suspend  --user $user_id com.android.settings
+        & $adbPath shell pm suspend  --user $user_id com.huawei.camera
+    & $adbPath shell pm disable-user  --user $user_id com.huawei.hidisk
+    & $adbPath shell pm disable-user  --user $user_id com.huawei.filemanager
+    & $adbPath shell pm disable-user  --user $user_id com.huawei.photos
+    & $adbPath shell pm disable-user  --user $user_id com.huawei.notepad
+    & $adbPath shell pm disable-user  --user $user_id com.huawei.calculator
     & $adbPath shell pm disable-user  --user $user_id com.huawei.android.totemweather
+    & $adbPath shell pm disable-user  --user $user_id com.huawei.systemmanager
+    & $adbPath shell pm suspend  --user $user_id com.huawei.systemmanager
+    & $adbPath shell pm disable-user  --user $user_id  com.vmall.client
     & $adbPath shell pm uninstall  --user $user_id com.huawei.intelligent
     & $adbPath shell pm disable-user   --user $user_id com.huawei.hidisk
+    & $adbPath shell pm disable-user   --user $user_id com.android.packainstallgeinstaller
     & $adbPath shell pm disable-user   --user $user_id com.huawei.android.findmyphone
-    & $adbPath shell pm uninstall  --user $user_id com.huawei.android.findmyphone
+    & $adbPath shell pm uninstall  --user $user_id com.android.HWSettings
+    & $adbPath shell pm uninstall  --user $user_id com.android.permissioncontroller
+
     & $adbPath shell pm uninstall  --user $user_id com.huawei.mycenter
     & $adbPath shell pm disable-user  --user $user_id com.huawei.mycenter
     & $adbPath shell pm uninstall --user $user_id com.huawei.educenter
